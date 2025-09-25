@@ -1,0 +1,28 @@
+%{
+daq_height_velocity.m
+
+Collect Banner sensor data for one trial
+Write data to csv
+%}
+
+close all
+clear
+
+% turn on ProCoDA Box
+daqreset
+dq = daq("ni");
+dio = addoutput(dq, 'Dev1', 'post0/line0:7', 'Digital')
+enable = [1 1 1 1 1 1 1 1];
+write(dq, enable)
+
+% add inputs
+ch0 = addinput(dq, "Dev1", "ai0", "Voltage"); % head tank sensor
+ch0.TerminalConfig = "SingleEnded";
+
+ch1 = addinput(dq, "Dev1", "ai1", "Voltage"); % supercritical sensor
+ch1.TerminalConfig = "SingleEnded";
+
+ch2 = addinput(dq, "Dev1", "ai2", "Voltage"); % subcritical sensor
+ch2.TerminalConfig = "SingleEnded";
+
+% collect data
