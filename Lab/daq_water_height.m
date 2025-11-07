@@ -1,5 +1,5 @@
 %{
-daq_height_velocity.m
+daq_water_height.m
 
 Collect Banner sensor data for one trial
 Write data to csv
@@ -38,7 +38,7 @@ ch2.Range = [-10 10];
 % collect data
 dt_sensor = 0.001; % Sensor sampling rate.
 fs = 1/dt_sensor; % daq sampling rate (Hz)
-dt = 10; % trial length (s)
+dt = 30; % trial length (s)
 dq.Rate = 400;
 set(ch0)
 set(ch1)
@@ -73,6 +73,6 @@ mean(V_ai2)
 
 tab = table(time, V_ai0, V_ai1, V_ai2);
 date = string(datetime('now', 'Format', 'yyyy-MM-dd''_''HH-mm-ss'));
-path = "sensor_data\exp2\";
+path = "sensor_data\exp3\";
 filename = date + "_" + "sensor_data" + ".csv";
 writetable(tab, fullfile(path,filename));
