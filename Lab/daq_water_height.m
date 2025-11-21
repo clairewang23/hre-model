@@ -73,6 +73,6 @@ mean(V_ai2)
 
 tab = table(time, V_ai0, V_ai1, V_ai2);
 date = string(datetime('now', 'Format', 'yyyy-MM-dd''_''HH-mm-ss'));
-path = "sensor_data\exp4\";
+path = "sensor_data\exp5\";
 filename = date + "_" + "sensor_data" + ".csv";
 writetable(tab, fullfile(path,filename));
