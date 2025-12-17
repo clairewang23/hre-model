@@ -38,7 +38,7 @@ ch2.Range = [-10 10];
 % collect data
 dt_sensor = 0.001; % Sensor sampling rate.
 fs = 1/dt_sensor; % daq sampling rate (Hz)
-dt = 30; % trial length (s)
+dt = 10; % trial length (s)
 dq.Rate = 400;
 set(ch0)
 set(ch1)
@@ -55,19 +55,19 @@ subplot(311)
 plot(time, V_ai0)
 xlabel('Time (s)')
 ylabel('Voltage (V)')
-mean(V_ai0)
+mean(V_ai0(V_ai0 <= -0.5))
 
 subplot(312)
 plot(time, V_ai1)
 xlabel('Time (s)')
 ylabel('Voltage (V)')
-mean(V_ai1)
+mean(V_ai1(V_ai1 <= -0.5))
 
 subplot(313)
 plot(time, V_ai2)
 xlabel('Time (s)')
 ylabel('Voltage (V)')
-mean(V_ai2)
+mean(V_ai2(V_ai2 <= -0.5))
 
 % write to spreadsheet
 
@@ -75,4 +75,4 @@ tab = table(time, V_ai0, V_ai1, V_ai2);
 date = string(datetime('now', 'Format', 'yyyy-MM-dd''_''HH-mm-ss'));
 path = "sensor_data\exp6\";
 filename = date + "_" + "sensor_data" + ".csv";
-writetable(tab, fullfile(path,filename));
+%(tab, fullfile(path,filename));
